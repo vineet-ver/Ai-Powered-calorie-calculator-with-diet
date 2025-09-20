@@ -1,0 +1,159 @@
+[
+  {
+    "title": "High-Protein Chicken Bowl",
+    "description": "A nutritious bowl packed with grilled chicken, quinoa, and fresh vegetables. Perfect for muscle building and weight management.",
+    "ingredients": [
+      "Grilled chicken breast (150g)",
+      "Cooked quinoa (100g)",
+      "Mixed vegetables (broccoli, bell peppers)",
+      "Avocado slices",
+      "Olive oil dressing"
+    ],
+    "prep_time": "15 minutes",
+    "cook_time": "20 minutes",
+    "servings": "1",
+    "calories_per_serving": 520
+  },
+  {
+    "title": "Low-Calorie Vegetable Soup",
+    "description": "A hearty, filling soup made with fresh vegetables and herbs. Ideal for weight loss while maintaining nutrition.",
+    "ingredients": [
+      "Mixed vegetables (carrots, celery, onions)",
+      "Low-sodium vegetable broth",
+      "Tomatoes",
+      "Fresh herbs (basil, thyme)",
+      "Lean ground turkey (optional)"
+    ],
+    "prep_time": "10 minutes",
+    "cook_time": "30 minutes",
+    "servings": "4",
+    "calories_per_serving": 180
+  },
+  {
+    "title": "Protein-Rich Oatmeal Bowl",
+    "description": "Start your day with this protein-packed oatmeal topped with nuts, seeds, and fresh berries.",
+    "ingredients": [
+      "Steel-cut oats (50g)",
+      "Protein powder (vanilla)",
+      "Mixed berries",
+      "Chopped almonds",
+      "Chia seeds",
+      "Almond milk"
+    ],
+    "prep_time": "5 minutes",
+    "cook_time": "15 minutes",
+    "servings": "1",
+    "calories_per_serving": 450
+  },
+  {
+    "title": "Lean Salmon with Vegetables",
+    "description": "Omega-3 rich salmon paired with roasted vegetables for a balanced, nutritious meal.",
+    "ingredients": [
+      "Salmon fillet (150g)",
+      "Roasted sweet potatoes",
+      "Steamed asparagus",
+      "Lemon",
+      "Herbs (dill, parsley)",
+      "Olive oil"
+    ],
+    "prep_time": "10 minutes",
+    "cook_time": "25 minutes",
+    "servings": "1",
+    "calories_per_serving": 480
+  },
+  {
+    "title": "Greek Yogurt Parfait",
+    "description": "A light, protein-rich snack or breakfast with layers of Greek yogurt, fruits, and granola.",
+    "ingredients": [
+      "Greek yogurt (plain, 200g)",
+      "Fresh berries",
+      "Granola",
+      "Honey",
+      "Chopped nuts"
+    ],
+    "prep_time": "5 minutes",
+    "cook_time": "0 minutes",
+    "servings": "1",
+    "calories_per_serving": 320
+  },
+  {
+    "title": "Turkey and Vegetable Stir-fry",
+    "description": "Quick and healthy stir-fry with lean turkey and colorful vegetables in a light sauce.",
+    "ingredients": [
+      "Ground turkey (lean, 150g)",
+      "Mixed stir-fry vegetables",
+      "Brown rice",
+      "Soy sauce (low sodium)",
+      "Ginger",
+      "Garlic"
+    ],
+    "prep_time": "10 minutes",
+    "cook_time": "15 minutes",
+    "servings": "2",
+    "calories_per_serving": 380
+  },
+  {
+    "title": "Protein Smoothie Bowl",
+    "description": "A thick, creamy smoothie bowl topped with fresh fruits and seeds for post-workout nutrition.",
+    "ingredients": [
+      "Protein powder (chocolate)",
+      "Banana",
+      "Spinach",
+      "Almond butter",
+      "Coconut flakes",
+      "Fresh berries"
+    ],
+    "prep_time": "5 minutes",
+    "cook_time": "0 minutes",
+    "servings": "1",
+    "calories_per_serving": 420
+  },
+  {
+    "title": "Quinoa Salad with Chickpeas",
+    "description": "A filling, plant-based salad with quinoa, chickpeas, and fresh vegetables in a lemon dressing.",
+    "ingredients": [
+      "Cooked quinoa",
+      "Chickpeas (canned, drained)",
+      "Cucumber",
+      "Cherry tomatoes",
+      "Feta cheese",
+      "Lemon vinaigrette"
+    ],
+    "prep_time": "15 minutes",
+    "cook_time": "0 minutes",
+    "servings": "2",
+    "calories_per_serving": 360
+  },
+  {
+    "title": "Egg White Vegetable Omelet",
+    "description": "A low-calorie, high-protein breakfast with egg whites and fresh vegetables.",
+    "ingredients": [
+      "Egg whites (4-5)",
+      "Spinach",
+      "Mushrooms",
+      "Bell peppers",
+      "Low-fat cheese",
+      "Herbs"
+    ],
+    "prep_time": "5 minutes",
+    "cook_time": "10 minutes",
+    "servings": "1",
+    "calories_per_serving": 200
+  },
+  {
+    "title": "Lean Beef and Sweet Potato",
+    "description": "A balanced meal with lean beef and nutrient-rich sweet potatoes for muscle building.",
+    "ingredients": [
+      "Lean ground beef (120g)",
+      "Baked sweet potato",
+      "Green beans",
+      "Onions",
+      "Garlic",
+      "Herbs and spices"
+    ],
+    "prep_time": "10 minutes",
+    "cook_time": "30 minutes",
+    "servings": "1",
+    "calories_per_serving": 520
+  }
+]

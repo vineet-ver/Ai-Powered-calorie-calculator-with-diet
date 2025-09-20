@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Plan - Smart Calorie Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="results-page">
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>Smart Calorie Calculator</h1>
+            </div>
+            <a href="{{ url_for('index') }}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Calculate Again
+            </a>
+        </header>
+
+        <div class="results-container">
+            <div class="results-header">
+                <h2><i class="fas fa-chart-line"></i> Your Personalized Nutrition Plan</h2>
+                <div class="plan-summary">
+                    <div class="summary-item">
+                        <span class="label">Goal:</span>
+                        <span class="value">{{ results.user_data.goal.title() }} Weight</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Duration:</span>
+                        <span class="value">{{ results.user_data.duration }} days</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Target Change:</span>
+                        <span class="value">
+                            {% if results.user_data.weight_change > 0 %}
+                                +{{ "%.1f"|format(results.user_data.weight_change) }} kg
+                            {% elif results.user_data.weight_change < 0 %}
+                                {{ "%.1f"|format(results.user_data.weight_change) }} kg
+                            {% else %}
+                                Maintain current weight
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-grid">
+                <!-- Daily Calorie Target -->
+                <div class="result-card primary">
+                    <div class="card-header">
+                        <i class="fas fa-fire"></i>
+                        <h3>Daily Calorie Target</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="big-number">{{ results.daily_calories }}</div>
+                        <div class="unit">calories/day</div>
+                        <div class="breakdown">
+                            <div class="breakdown-item">
+                                <span>BMR: {{ results.bmr }} cal</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span>TDEE: {{ results.tdee }} cal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Macronutrient Breakdown -->
+                <div class="result-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Macronutrient Breakdown</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="macros">
+                            <div class="macro-item protein">
+                                <div class="macro-circle">
+                                    <i class="fas fa-drumstick-bite"></i>
+                                </div>
+                                <div class="macro-info">
+                                    <div class="macro-amount">{{ results.macros.protein }}g</div>
+                                    <div class="macro-label">Protein</div>
+                                </div>
+                            </div>
+                            <div class="macro-item carbs">
+                                <div class="macro-circle">
+                                    <i class="fas fa-bread-slice"></i>
+                                </div>
+                                <div class="macro-info">
+                                    <div class="macro-amount">{{ results.macros.carbs }}g</div>
+                                    <div class="macro-label">Carbs</div>
+                                </div>
+                            </div>
+                            <div class="macro-item fat">
+                                <div class="macro-circle">
+                                    <i class="fas fa-cheese"></i>
+                                </div>
+                                <div class="macro-info">
+                                    <div class="macro-amount">{{ results.macros.fat }}g</div>
+                                    <div class="macro-label">Fat</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Meal Plan -->
+                <div class="result-card meal-plan">
+                    <div class="card-header">
+                        <i class="fas fa-clock"></i>
+                        <h3>Sample Meal Plan</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="meals">
+                            <div class="meal">
+                                <div class="meal-time">
+                                    <i class="fas fa-sun"></i>
+                                    Breakfast
+                                </div>
+                                <div class="meal-calories">{{ results.meal_plan.breakfast.calories }} cal</div>
+                                <div class="meal-suggestion">{{ results.meal_plan.breakfast.suggestion }}</div>
+                            </div>
+                            <div class="meal">
+                                <div class="meal-time">
+                                    <i class="fas fa-cloud-sun"></i>
+                                    Lunch
+                                </div>
+                                <div class="meal-calories">{{ results.meal_plan.lunch.calories }} cal</div>
+                                <div class="meal-suggestion">{{ results.meal_plan.lunch.suggestion }}</div>
+                            </div>
+                            <div class="meal">
+                                <div class="meal-time">
+                                    <i class="fas fa-moon"></i>
+                                    Dinner
+                                </div>
+                                <div class="meal-calories">{{ results.meal_plan.dinner.calories }} cal</div>
+                                <div class="meal-suggestion">{{ results.meal_plan.dinner.suggestion }}</div>
+                            </div>
+                            <div class="meal">
+                                <div class="meal-time">
+                                    <i class="fas fa-apple-alt"></i>
+                                    Snacks
+                                </div>
+                                <div class="meal-calories">{{ results.meal_plan.snacks.calories }} cal</div>
+                                <div class="meal-suggestion">{{ results.meal_plan.snacks.suggestion }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipe Recommendations -->
+                {% if results.recipes %}
+                <div class="result-card recipes-card full-width">
+                    <div class="card-header">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Recommended Recipes</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="recipes-grid">
+                            {% for recipe in results.recipes %}
+                            <div class="recipe-card">
+                                <div class="recipe-header">
+                                    <h4>{{ recipe.title }}</h4>
+                                </div>
+                                <div class="recipe-content">
+                                    <p class="recipe-description">{{ recipe.description[:100] }}...</p>
+                                    <div class="recipe-meta">
+                                        {% if recipe.prep_time != 'N/A' %}
+                                        <span><i class="fas fa-clock"></i> {{ recipe.prep_time }}</span>
+                                        {% endif %}
+                                        {% if recipe.servings != 'N/A' %}
+                                        <span><i class="fas fa-users"></i> {{ recipe.servings }} servings</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="recipe-ingredients">
+                                        <strong>Key Ingredients:</strong>
+                                        <ul>
+                                            {% for ingredient in recipe.ingredients[:3] %}
+                                            <li>{{ ingredient }}</li>
+                                            {% endfor %}
+                                            {% if recipe.ingredients|length > 3 %}
+                                            <li>...and {{ recipe.ingredients|length - 3 }} more</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Tips and Recommendations -->
+            <div class="tips-section">
+                <h3><i class="fas fa-lightbulb"></i> Tips for Success</h3>
+                <div class="tips-grid">
+                    <div class="tip">
+                        <i class="fas fa-tint"></i>
+                        <p><strong>Stay Hydrated:</strong> Drink at least 8 glasses of water daily</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-bed"></i>
+                        <p><strong>Get Enough Sleep:</strong> Aim for 7-9 hours of quality sleep</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-chart-line"></i>
+                        <p><strong>Track Progress:</strong> Monitor your weight and measurements weekly</p>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-dumbbell"></i>
+                        <p><strong>Stay Consistent:</strong> Regular exercise and meal timing are key</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-row social-row">
+      <a class="social-link ig" href="https://www.instagram.com/the_vineetthakur/?hl=en" target="_blank" rel="noopener">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+      <a class="social-link li" href="https://www.linkedin.com/in/vineet-verma-b80359250/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i><span>LinkedIn</span>
+      </a>
+      <a class="social-link gh" href="https://github.com/vineet-ver" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i><span>GitHub</span>
+      </a>
+    </div>
+
+    <div class="footer-row credit-row">
+      <div class="credit">
+        <span class="made">made by</span>
+        <span class="name">Vineet</span>
+        <span class="sparkle" aria-hidden="true">✦</span>
+      </div>
+    </div>
+
+    <!-- decorative comet particles -->
+    <div class="comet c1"></div>
+    <div class="comet c2"></div>
+    <div class="comet c3"></div>
+  </div>
+</footer>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the big number
+            const bigNumber = document.querySelector('.big-number');
+            if (bigNumber) {
+                const finalValue = parseInt(bigNumber.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        bigNumber.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        bigNumber.textContent = Math.floor(currentValue);
+                    }
+                }, 20);
+            }
+        });
+    </script>
+</body>
+</html>

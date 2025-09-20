@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Calorie Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>Smart Calorie Calculator</h1>
+            </div>
+            <p class="subtitle">AI-Powered Personalized Nutrition Planning</p>
+        </header>
+
+        {% if error %}
+        <div class="alert alert-error">
+            <i class="fas fa-exclamation-triangle"></i>
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="form-container">
+            <form method="POST" action="/" class="calorie-form">
+                <div class="form-section">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age (years)</label>
+                            <input type="number" id="age" name="age" required min="16" max="100" placeholder="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="current_weight">Current Weight (kg)</label>
+                            <input type="number" id="current_weight" name="current_weight" required min="30" max="300" step="0.1" placeholder="70.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" name="height" required min="120" max="250" placeholder="175">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-target"></i> Goals & Timeline</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="target_weight">Target Weight (kg)</label>
+                            <input type="number" id="target_weight" name="target_weight" required min="30" max="300" step="0.1" placeholder="65.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration (days)</label>
+                            <input type="number" id="duration" name="duration" required min="7" max="365" placeholder="90">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="goal">Weight Goal</label>
+                        <select id="goal" name="goal" required>
+                            <option value="">Select Goal</option>
+                            <option value="lose">Lose Weight</option>
+                            <option value="maintain">Maintain Weight</option>
+                            <option value="gain">Gain Weight</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-dumbbell"></i> Activity & Lifestyle</h2>
+                    <div class="form-group">
+                        <label for="activity_level">Primary Activity Level</label>
+                        <select id="activity_level" name="activity_level" required>
+                            <option value="">Select Activity Level</option>
+                            <option value="sitting">Sedentary (Mostly sitting)</option>
+                            <option value="walking">Light Activity (Walking, light exercise)</option>
+                            <option value="riding">Moderate Activity (Regular exercise)</option>
+                            <option value="active">Very Active (Intense exercise)</option>
+                            <option value="very_active">Extremely Active (Physical job + exercise)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="workout_type">Workout Type</label>
+                        <select id="workout_type" name="workout_type" required>
+                            <option value="">Select Workout Type</option>
+                            <option value="gym_diet">Gym Diet (Strength training focused)</option>
+                            <option value="no_gym">No Gym (General fitness)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2><i class="fas fa-utensils"></i> Recipe Preferences</h2>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="radio" name="cooking_recipes" value="yes" checked>
+                            <span class="checkmark"></span>
+                            Yes, I want cooking recipe recommendations
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="radio" name="cooking_recipes" value="no">
+                            <span class="checkmark"></span>
+                            No, just show me the calorie plan
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-chart-line"></i>
+                    Calculate My Personalized Plan
+                </button>
+            </form>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>AI-Powered</h3>
+                <p>Machine learning algorithms refine your calorie calculations for better accuracy</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Macro Breakdown</h3>
+                <p>Personalized protein, carbs, and fat distribution based on your goals</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Recipe Suggestions</h3>
+                <p>NLP-powered recipe recommendations tailored to your dietary requirements</p>
+            </div>
+        </div>
+    </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-row social-row">
+      <a class="social-link ig" href="https://www.instagram.com/the_vineetthakur/?hl=en" target="_blank" rel="noopener">
+        <i class="fab fa-instagram"></i><span>Instagram</span>
+      </a>
+      <a class="social-link li" href="https://www.linkedin.com/in/vineet-verma-b80359250/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i><span>LinkedIn</span>
+      </a>
+      <a class="social-link gh" href="https://github.com/vineet-ver" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i><span>GitHub</span>
+      </a>
+    </div>
+
+    <div class="footer-row credit-row">
+      <div class="credit">
+        <span class="made">made by</span>
+        <span class="name">Vineet</span>
+        <span class="sparkle" aria-hidden="true">✦</span>
+      </div>
+    </div>
+
+    <!-- decorative comet particles -->
+    <div class="comet c1"></div>
+    <div class="comet c2"></div>
+    <div class="comet c3"></div>
+  </div>
+</footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
